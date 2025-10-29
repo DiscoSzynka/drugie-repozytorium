@@ -1,0 +1,45 @@
+Zadanie 1
+1. ALTER TABLE zadanie DROP CONSTRAINT zadanie_ibfk_1;
+   ALTER TABLE projekt DROP CONSTRAINT projekt_ibfk_1;
+2.
+   ALTER TABLE pracownicy DROP COLUMN id_pracownika;
+3. ALTER TABLE pracownicy ADD pracownicy_id INT  
+ ALTER TABLE pracownicy MODIFY pracownicy_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL;   
+4. ALTER TABLE zadanie ADD FOREIGN KEY(pracownik) REFERENCES pracownicy(pracownicy_id) ON DELETE SET NULL;
+ ALTER TABLE projekt ADD FOREIGN KEY(menadzer_projektu) REFERENCES pracownicy(pracownicy_id) ON DELETE CASCADE;
+   
+
+Zadanie 2
+1. ALTER TABLE zadanie ADD godziny_szacowane INT DEFAULT 8;
+
+2.  
+UPDATE zadanie SET godziny_szacowane = 4 WHERE id_zadania = 1;
+UPDATE zadanie SET godziny_szacowane = 12 WHERE id_zadania = 2;
+UPDATE zadanie SET godziny_szacowane = 16 WHERE id_zadania = 3;
+3.
+ALTER TABLE zadanie MODIFY godziny_szacowane INT DEFAULT 6;
+INSERT INTO zadanie(nazwa_zadania,priorytet,pracownik,projekt) VALUES ('zmywanie','wysoki',2,2);  //godziny szacowane to 6
+
+DELETE FROM zadanie WHERE godziny_szacowane = 6;
+
+Zadanie 3
+
+1. ALTER TABLE projekt ADD opis_kratki VARCHAR(50);
+2. ALTER TABLE projekt MODIFY opis_kratki VARCHAR(200);
+3. UPDATE projekt SET opis_kratki = 'wdrozenie' WHERE id_projektu = 1;
+UPDATE projekt SET opis_kratki = 'pilne' WHERE id_projektu = 2;
+4. ALTER TABLE projekt DROP opis_kratki;
+
+Zadanie 4
+
+1. ALTER TABLE zadanie DROP CONSTRAINT zadanie_ibfk_2;
+ ALTER TABLE zadanie DROP projekt;
+
+2. ALTER TABLE zadanie ADD projekt INT;
+ ALTER TABLE zadanie ADD FOREIGN KEY (projekt) REFERENCES projekt(id_projektu) ON DELETE SET NULL;
+3. DELETE FROM projekt WHERE id_projektu = 2;
+
+4. SELECT * FROM projekt;
+
+
+
